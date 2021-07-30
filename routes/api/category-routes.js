@@ -5,6 +5,16 @@ const { Category, Product } = require('../../models');
 
 router.get('/', (req, res) => {
   // find all categories
+  router.get('/', async (req,res => {
+    try {
+      const catetoriesData = await Category.findAll({
+        include: [{ model: Reader }],
+      });
+      res.status(200).json(libraryCardData);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  }))
   // be sure to include its associated Products
 });
 
